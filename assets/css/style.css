@@ -9,6 +9,7 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 html {
@@ -60,7 +61,7 @@ a {
     text-decoration: none;
 }
 
-p{
+p {
     margin-bottom: 3rem;
 }
 
@@ -141,7 +142,7 @@ article {
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: center;
-    height:100vh;
+    min-height: 100vh;
     text-align: center;
 }
 
@@ -154,7 +155,7 @@ article {
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: center;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .grid-one-content h2 {
@@ -165,13 +166,13 @@ article {
     margin-bottom: 1rem;
 }
 
-.grid-description{
+.grid-description {
     padding-bottom: 5rem;
 }
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: var(--gap);
     counter-reset: grid-counter;
 }
@@ -183,7 +184,7 @@ article {
     padding-bottom: 2rem;
 }
 
-.grid h3::before{
+.grid h3::before {
     counter-increment: grid-counter;
     content: counter(grid-counter);
     position: absolute;
@@ -191,7 +192,7 @@ article {
     font-style: italic;
     top: -3rem;
     left: 2rem;
-    transform:rotate(5deg);
+    transform: rotate(5deg);
 
 }
 
@@ -255,7 +256,7 @@ article {
 }
 
 .gallery-img {
-    width: 100%;
+    min-width: 100%;
     max-width: 36rem;
     max-height: 36rem;
     overflow: hidden;
@@ -275,6 +276,88 @@ article {
     overflow-x: auto;
 }
 
+.contact-form {
+    grid-column: span 2;
+}
+
+.contact-form .form-grid {
+    border: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--gap)
+}
+
+.form-grid legend {
+    font-style: italic;
+    font-size: 3rem;
+    margin-bottom: 3rem;
+}
+
+.form-group {
+    flex: 1 1 32rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    box-shadow: 0 0 1rem 0.2rem var(--secondary-color);
+
+}
+
+.form-group input,
+.form-group textarea {
+    border: none;
+    background-color: var(--white-color);
+    padding: 1.5rem 2rem;
+    width: 100%;
+    border-radius: 10px;
+}
+
+body .full-width {
+    width: 100%;
+    flex: 1 1 100%;
+}
+
+.form-group button {
+    border: 0.5rem solid;
+    background: none;
+    color: var(--white-color);
+    padding: 1.5rem 2rem;
+    font-size: 3rem;
+    cursor: pointer;
+    transition: all 300ms ease-in-out;
+    border-radius: 10px;
+}
+
+.form-group button:hover {
+    background-color: var(--white-color);
+    color: var(--primmary-color)
+}
+
+.form-group ::placeholder {
+    color: gray
+}
+
+.footer {
+    text-align: center;
+    height: 10vh;
+    font-size: 1.6rem;
+}
+
+.footer a {
+    color: grey;
+}
+
+.footer p {
+    margin: 0;
+    padding: 3rem;
+}
+
 table caption {
     font-style: italic;
     font-size: 1.6rem;
@@ -287,7 +370,8 @@ table {
     border-collapse: collapse;
 }
 
-table td, table th {
+table td,
+table th {
     white-space: nowrap;
     text-align: center;
     padding: 0.5rem;
@@ -302,4 +386,95 @@ tfoot tr {
     background-color: var(--light-gray-color);
     font-style: italic;
     font-size: 1.6rem;
+}
+
+.close-menu {
+    display: none;
+}
+
+.back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background-color: var(--white-color);
+    width: 5rem;
+    height: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color: var(--primmary-color);
+    padding: 0.1rem;
+    font-size: 3cqh;
+}
+
+@media(max-width: 800px) {
+    .intro-content .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-img {
+        width: 100%;
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    .gallery-img img {
+        width: 100%;
+    }
+
+    .grid-one-content {
+        display: block;
+    }
+
+    .menu {
+        bottom: 0;
+        text-align: center;
+    }
+
+    .menu-content,
+    .menu-content ul {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .menu-content {
+        height: 100vh
+    }
+
+    .menu {
+        display: none;
+    }
+
+    .close-menu-label::after {
+        content: '☰';
+        position: fixed;
+        z-index: 2;
+        top: 1rem;
+        right: 1rem;
+        color: var(--primmary-color);
+        font-size: 3rem;
+        line-height: 3rem;
+        width: 3rem;
+        height: 3rem;
+        text-align: center;
+        padding: 0.5rem;
+        cursor: pointer;
+    }
+
+    .close-menu:checked~.menu {
+        display: block;
+    }
+
+    .close-menu:checked~.close-menu-label::after {
+        content: 'x';
+    }
+
+    .menu-spacing {
+        display: none;
+    }
 }
